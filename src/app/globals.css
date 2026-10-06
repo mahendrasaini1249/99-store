@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Arrow */
+
+
+.home-slider .swiper-button-next,
+.home-slider .swiper-button-prev {
+  color: #ee7d05 !important;
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.home-slider .swiper-button-next::after,
+.home-slider .swiper-button-prev::after {
+  font-size: 14px !important;
+  color: #ee7d05 !important;
+  font-weight: 600 !important;
+}

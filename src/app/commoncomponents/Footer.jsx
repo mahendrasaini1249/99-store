@@ -13,7 +13,7 @@ const shopLinks = [
     },
     {
         name: "Categories",
-        href: "#",
+        href: "/pages/categories",
     },
     {
         name: "New Arrivals",
@@ -32,7 +32,7 @@ const shopLinks = [
 const supportLinks = [
     {
         name: "Contact Us",
-        href: "/contact",
+        href: "/pages/contact",
     },
     {
         name: "Track Order",

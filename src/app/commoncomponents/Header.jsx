@@ -1,10 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import {
     Search,
     ShoppingCart,
     UserRound,
     Menu,
-    X,
     Heart,
     MapPin,
     ChevronDown,
@@ -20,8 +23,8 @@ const navLinks = [
         href: "/pages/shop",
     },
     {
-        name: "Categoryies",
-        href: "/pages/categoryies",
+        name: "Categories",
+        href: "/pages/categories",
     },
     {
         name: "About",
@@ -34,6 +37,16 @@ const navLinks = [
 ];
 
 export default function Header() {
+    const pathname = usePathname();
+
+    const isActiveLink = (href) => {
+        if (href === "/") {
+            return pathname === "/";
+        }
+
+        return pathname.startsWith(href);
+    };
+
     return (
         <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
             {/* Top Bar */}
@@ -41,7 +54,10 @@ export default function Header() {
                 <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs sm:px-6 lg:px-8">
                     <div className="flex items-center gap-2">
                         <MapPin size={14} />
-                        <span>Free delivery on orders above ₹499</span>
+
+                        <span>
+                            Free delivery on orders above ₹499
+                        </span>
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -74,13 +90,20 @@ export default function Header() {
                             className="shrink-0"
                         >
                             <div className="flex items-center gap-2">
-                                <div className="flex h-15 w-15 items-center justify-center rounded-xl bg-black text-lg font-bold text-white">
-                                    <img className="h-[60px]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSdCK3PQuteOR0kzVwdUxHXovSWujz_3AJf5DAD-5cEQ&s=10" alt="" />
+                                <div className="flex h-15 w-15 items-center justify-center overflow-hidden rounded-xl bg-black text-lg font-bold text-white">
+                                    <img
+                                        className="h-[60px] w-[60px] object-cover"
+                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSdCK3PQuteOR0kzVwdUxHXovSWujz_3AJf5DAD-5cEQ&s=10"
+                                        alt="99 Store"
+                                    />
                                 </div>
 
                                 <div className="hidden sm:block">
                                     <h1 className="text-xl font-extrabold leading-none tracking-tight text-gray-900">
-                                        <span className="text-[#FD9702]">99 /</span>  STORE
+                                        <span className="text-[#FD9702]">
+                                            99 /
+                                        </span>{" "}
+                                        STORE
                                     </h1>
 
                                     <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.25em] text-gray-500">
@@ -108,8 +131,9 @@ export default function Header() {
 
                         {/* Desktop Actions */}
                         <div className="hidden items-center gap-1 md:flex">
+                            {/* Wishlist */}
                             <Link
-                                href="/wishlist"
+                                href="/pages/wishlist"
                                 className="group flex h-10 w-10 items-center justify-center rounded-full transition hover:bg-gray-100"
                             >
                                 <Heart
@@ -118,23 +142,25 @@ export default function Header() {
                                 />
                             </Link>
 
+                            {/* Account */}
                             <Link
-                                href="/account"
+                                href="/pages/account"
                                 className="group flex h-10 w-10 items-center justify-center rounded-full transition hover:bg-gray-100"
                             >
                                 <UserRound
                                     size={20}
-                                    className="text-gray-700 group-hover:text-[#FD9702]"
+                                    className="text-gray-700 transition group-hover:text-[#FD9702]"
                                 />
                             </Link>
 
+                            {/* Cart */}
                             <Link
                                 href="/cart"
                                 className="group relative flex h-10 w-10 items-center justify-center rounded-full transition hover:bg-gray-100"
                             >
                                 <ShoppingCart
                                     size={20}
-                                    className="text-gray-700 group-hover:text-[#FD9702]"
+                                    className="text-gray-700 transition group-hover:text-[#FD9702]"
                                 />
 
                                 <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[9px] font-bold text-white">
@@ -145,16 +171,18 @@ export default function Header() {
 
                         {/* Mobile Actions */}
                         <div className="flex items-center gap-1 md:hidden">
+                            {/* Mobile Search */}
                             <Link
                                 href="/search"
-                                className="flex h-9 w-9 items-center justify-center rounded-full hover:bg-gray-100"
+                                className="flex h-9 w-9 items-center justify-center rounded-full transition hover:bg-gray-100"
                             >
                                 <Search size={20} />
                             </Link>
 
+                            {/* Mobile Cart */}
                             <Link
                                 href="/cart"
-                                className="relative flex h-9 w-9 items-center justify-center rounded-full hover:bg-gray-100"
+                                className="relative flex h-9 w-9 items-center justify-center rounded-full transition hover:bg-gray-100"
                             >
                                 <ShoppingCart size={20} />
 
@@ -163,13 +191,14 @@ export default function Header() {
                                 </span>
                             </Link>
 
-                            {/* CSS-only mobile menu */}
+                            {/* Mobile Menu */}
                             <details className="relative">
-                                <summary className="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full hover:bg-gray-100 [&::-webkit-details-marker]:hidden">
+                                <summary className="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full transition hover:bg-gray-100 [&::-webkit-details-marker]:hidden">
                                     <Menu size={21} />
                                 </summary>
 
                                 <div className="absolute right-0 top-12 w-64 rounded-2xl border border-gray-100 bg-white p-4 shadow-xl">
+                                    {/* Menu Header */}
                                     <div className="mb-4 flex items-center justify-between border-b border-gray-100 pb-3">
                                         <span className="text-sm font-semibold text-gray-900">
                                             Menu
@@ -181,32 +210,56 @@ export default function Header() {
                                         />
                                     </div>
 
+                                    {/* Mobile Navigation */}
                                     <nav className="space-y-1">
-                                        {navLinks.map((link) => (
-                                            <Link
-                                                key={link.name}
-                                                href={link.href}
-                                                className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-100 hover:text-black"
-                                            >
-                                                {link.name}
-                                            </Link>
-                                        ))}
+                                        {navLinks.map((link) => {
+                                            const active =
+                                                isActiveLink(link.href);
+
+                                            return (
+                                                <Link
+                                                    key={link.name}
+                                                    href={link.href}
+                                                    className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition ${active
+                                                        ? "bg-[#FD9702] text-white"
+                                                        : "text-gray-700 hover:bg-gray-100 hover:text-black"
+                                                        }`}
+                                                >
+                                                    {link.name}
+                                                </Link>
+                                            );
+                                        })}
                                     </nav>
 
+                                    {/* Mobile Extra Links */}
                                     <div className="mt-3 border-t border-gray-100 pt-3">
+                                        {/* Wishlist */}
                                         <Link
                                             href="/wishlist"
-                                            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                                            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${pathname.startsWith(
+                                                "/wishlist"
+                                            )
+                                                ? "bg-[#FD9702] text-white"
+                                                : "text-gray-700 hover:bg-gray-100"
+                                                }`}
                                         >
                                             <Heart size={17} />
+
                                             Wishlist
                                         </Link>
 
+                                        {/* Account */}
                                         <Link
                                             href="/account"
-                                            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                                            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${pathname.startsWith(
+                                                "/account"
+                                            )
+                                                ? "bg-[#FD9702] text-white"
+                                                : "text-gray-700 hover:bg-gray-100"
+                                                }`}
                                         >
                                             <UserRound size={17} />
+
                                             My Account
                                         </Link>
                                     </div>
@@ -236,16 +289,23 @@ export default function Header() {
             {/* Desktop Navigation */}
             <div className="hidden border-b border-gray-100 md:block">
                 <div className="mx-auto flex h-12 max-w-7xl items-center justify-center px-4 sm:px-6 lg:px-8">
-                    <nav className="flex items-center gap-8">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className="relative text-sm font-medium text-gray-600 transition hover:text-black"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
+                    <nav className="flex items-center gap-2">
+                        {navLinks.map((link) => {
+                            const active = isActiveLink(link.href);
+
+                            return (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className={`rounded-lg px-4 py-2 text-sm font-medium transition ${active
+                                        ? "bg-[#FD9702] text-white"
+                                        : "text-gray-600 hover:bg-gray-100 hover:text-black"
+                                        }`}
+                                >
+                                    {link.name}
+                                </Link>
+                            );
+                        })}
                     </nav>
                 </div>
             </div>

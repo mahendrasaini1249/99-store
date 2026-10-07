@@ -71,7 +71,7 @@ export default function Header() {
                         <span className="h-3 w-px bg-gray-600" />
 
                         <Link
-                            href="/contact"
+                            href="/pages/contact"
                             className="transition hover:text-gray-300"
                         >
                             Need Help?
@@ -85,14 +85,16 @@ export default function Header() {
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between gap-4 lg:h-20">
                         {/* Logo */}
+                        {/* Logo */}
                         <Link
                             href="/"
                             className="shrink-0"
                         >
                             <div className="flex items-center gap-2">
-                                <div className="flex h-15 w-15 items-center justify-center overflow-hidden rounded-xl bg-black text-lg font-bold text-white">
+
+                                <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-lg bg-black text-lg font-bold text-white sm:h-15 sm:w-15">
                                     <img
-                                        className="h-[60px] w-[60px] object-cover"
+                                        className="h-11 w-11 object-cover sm:h-[60px] sm:w-[60px]"
                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSdCK3PQuteOR0kzVwdUxHXovSWujz_3AJf5DAD-5cEQ&s=10"
                                         alt="99 Store"
                                     />
@@ -110,6 +112,7 @@ export default function Header() {
                                         Everything You Need
                                     </p>
                                 </div>
+
                             </div>
                         </Link>
 
@@ -235,7 +238,7 @@ export default function Header() {
                                     <div className="mt-3 border-t border-gray-100 pt-3">
                                         {/* Wishlist */}
                                         <Link
-                                            href="/wishlist"
+                                            href="/pages/wishlist"
                                             className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${pathname.startsWith(
                                                 "/wishlist"
                                             )
@@ -250,7 +253,7 @@ export default function Header() {
 
                                         {/* Account */}
                                         <Link
-                                            href="/account"
+                                            href="/pages/account"
                                             className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${pathname.startsWith(
                                                 "/account"
                                             )
